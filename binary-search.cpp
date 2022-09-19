@@ -2,7 +2,7 @@
 using namespace std;
 
 void input(int *a, int size);
-int linearsearch(int *a, int size, int x);
+int binarysearch(int *a, int size, int x);
 
 int main()
 {
@@ -19,7 +19,7 @@ int main()
     cin>>x;
 
 
-    index = linearsearch(array,size,x);
+    index = binarysearch(array,size,x);
 
     if(index>=0)
         cout<<"\nElement "<<x<<" FOUND at POSITION: "<<(index+1)<<endl;
@@ -31,6 +31,7 @@ int main()
 
 void input(int *a, int size)
 {
+    printf("\nEnter elements in a SORTED manner.\n");
     for(int i=0;i<size;i++)
     {
         cout<<"\nEnter element "<<i+1<<": ";
@@ -42,11 +43,20 @@ void input(int *a, int size)
         cout<<a[i]<<" ";
 }
 
-int linearsearch(int *a, int size, int x)
+int binarysearch(int *a, int size, int x)
 {
-    for(int i=0;i<size;i++)
-        if(a[i]==x)
-            return i;
-
+    int low, high, mid;
+    low = 0;
+    high = size - 1;
+    while (low<=high)
+    {
+        mid = low + (high-low)/2;
+        if(x<a[mid])
+            high = mid-1;
+        else if(x>a[mid])
+            low = mid+1;
+        else    
+            return mid;
+    }
     return -1;
 }
