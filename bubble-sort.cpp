@@ -54,4 +54,4 @@ void bubblesort(int *a, int size)
                 a[j+1]=t;
             }
 
-}
+} 
